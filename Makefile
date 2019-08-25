@@ -8,7 +8,7 @@ PKG_BUILD_PARALLEL:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/zfl9/chinadns-ng.git
-PKG_SOURCE_VERSION:=56c4fbe8347fa656a400c4ebf2600ff3da070047
+PKG_SOURCE_VERSION:=336a8bae00b6a62db5a9b597e34c894096205a72
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
@@ -44,8 +44,8 @@ define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) files/chinadns-ng.config $(1)/etc/config/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/chinadns-ng
-	$(INSTALL_DATA) files/chnroute.ipset $(1)/etc/chinadns-ng/chnroute.ipset
-	$(INSTALL_DATA) files/chnroute6.ipset $(1)/etc/chinadns-ng/chnroute6.ipset
+	$(INSTALL_DATA) files/chnroute.txt $(1)/etc/chinadns-ng/chnroute.txt
+	$(INSTALL_DATA) files/chnroute6.txt $(1)/etc/chinadns-ng/chnroute6.txt
 endef
 
 define Package/chinadns-ng/postrm
