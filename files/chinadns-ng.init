@@ -61,14 +61,15 @@ create_ipv4_ipset() {
 	ipset add $ipset_name "172.16.0.0/12"
 	ipset add $ipset_name "192.0.0.0/24"
 	ipset add $ipset_name "192.0.2.0/24"
+	ipset add $ipset_name "192.31.196.0/24"
+	ipset add $ipset_name "192.52.193.0/24"
 	ipset add $ipset_name "192.88.99.0/24"
 	ipset add $ipset_name "192.168.0.0/16"
+	ipset add $ipset_name "192.175.48.0/24"
 	ipset add $ipset_name "198.18.0.0/15"
 	ipset add $ipset_name "198.51.100.0/24"
 	ipset add $ipset_name "203.0.113.0/24"
-	ipset add $ipset_name "224.0.0.0/4"
-	ipset add $ipset_name "240.0.0.0/4"
-	ipset add $ipset_name "255.255.255.255/32"
+	ipset add $ipset_name "224.0.0.0/3"
 
 	# add chnroute
 	for ip in $(cat /etc/chinadns-ng/chnroute.txt); do
