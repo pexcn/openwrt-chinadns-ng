@@ -32,8 +32,8 @@ endef
 
 define Package/chinadns-ng/conffiles
 /etc/config/chinadns-ng
-/etc/chinadns-ng/chnroute.ipset
-/etc/chinadns-ng/chnroute6.ipset
+/etc/chinadns-ng/chnroute.txt
+/etc/chinadns-ng/chnroute6.txt
 endef
 
 define Package/chinadns-ng/install
