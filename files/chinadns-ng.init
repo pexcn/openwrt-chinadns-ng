@@ -46,14 +46,13 @@ create_ipv4_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_4" "chnroute"
 
-	if ipset list -n $ipset_name > /dev/null 2>&1; then
-		ipset destroy $ipset_name 2>/dev/null
+	if ipset list -n $ipset_name &>/dev/null; then
+		ipset flush $ipset_name
+	else
+		ipset create $ipset_name hash:net hashsize 64 family inet
 	fi
 
 	ipset restore <<- EOF
-		# create ipset
-		create $ipset_name hash:net hashsize 64 family inet
-
 		# add lan
 		add $ipset_name 0.0.0.0/8
 		add $ipset_name 10.0.0.0/8
@@ -82,14 +81,13 @@ create_ipv6_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_6" "chnroute6"
 
-	if ipset list -n $ipset_name > /dev/null 2>&1; then
-		ipset destroy $ipset_name 2>/dev/null
+	if ipset list -n $ipset_name &>/dev/null; then
+		ipset flush $ipset_name
+	else
+		ipset create $ipset_name hash:net hashsize 64 family inet6
 	fi
 
 	ipset restore <<- EOF
-		# create ipset
-		create $ipset_name hash:net hashsize 64 family inet6
-
 		# add lan
 		add $ipset_name ::/128
 		add $ipset_name ::1/128
