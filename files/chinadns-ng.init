@@ -52,8 +52,8 @@ create_ipv4_ipset() {
 		ipset create $ipset_name hash:net hashsize 64 family inet
 	fi
 
+	# add lan & chnroute
 	ipset restore <<- EOF
-		# add lan
 		add $ipset_name 0.0.0.0/8
 		add $ipset_name 10.0.0.0/8
 		add $ipset_name 100.64.0.0/10
@@ -71,8 +71,6 @@ create_ipv4_ipset() {
 		add $ipset_name 198.51.100.0/24
 		add $ipset_name 203.0.113.0/24
 		add $ipset_name 224.0.0.0/3
-
-		# add chnroute
 		$(cat /etc/chinadns-ng/chnroute.txt | sed "s/^/add $ipset_name /")
 	EOF
 }
@@ -87,8 +85,8 @@ create_ipv6_ipset() {
 		ipset create $ipset_name hash:net hashsize 64 family inet6
 	fi
 
+	# add lan & chnroute6
 	ipset restore <<- EOF
-		# add lan
 		add $ipset_name ::/128
 		add $ipset_name ::1/128
 		add $ipset_name ::ffff:0:0/96
@@ -102,8 +100,6 @@ create_ipv6_ipset() {
 		add $ipset_name fc00::/7
 		add $ipset_name fe80::/10
 		add $ipset_name ff00::/8
-
-		# add chnroute6
 		$(cat /etc/chinadns-ng/chnroute6.txt | sed "s/^/add $ipset_name /")
 	EOF
 }
