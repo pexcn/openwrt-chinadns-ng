@@ -46,66 +46,68 @@ create_ipv4_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_4" "chnroute"
 
-	# create ipset
 	if ipset list -n $ipset_name > /dev/null 2>&1; then
 		ipset destroy $ipset_name 2>/dev/null
 	fi
-	ipset create $ipset_name hash:net hashsize 64 family inet
 
-	# add lan
-	ipset add $ipset_name "0.0.0.0/8"
-	ipset add $ipset_name "10.0.0.0/8"
-	ipset add $ipset_name "100.64.0.0/10"
-	ipset add $ipset_name "127.0.0.0/8"
-	ipset add $ipset_name "169.254.0.0/16"
-	ipset add $ipset_name "172.16.0.0/12"
-	ipset add $ipset_name "192.0.0.0/24"
-	ipset add $ipset_name "192.0.2.0/24"
-	ipset add $ipset_name "192.31.196.0/24"
-	ipset add $ipset_name "192.52.193.0/24"
-	ipset add $ipset_name "192.88.99.0/24"
-	ipset add $ipset_name "192.168.0.0/16"
-	ipset add $ipset_name "192.175.48.0/24"
-	ipset add $ipset_name "198.18.0.0/15"
-	ipset add $ipset_name "198.51.100.0/24"
-	ipset add $ipset_name "203.0.113.0/24"
-	ipset add $ipset_name "224.0.0.0/3"
+	ipset restore <<- EOF
+		# create ipset
+		create $ipset_name hash:net hashsize 64 family inet
 
-	# add chnroute
-	for ip in $(cat /etc/chinadns-ng/chnroute.txt); do
-		ipset add $ipset_name $ip
-	done
+		# add lan
+		add $ipset_name 0.0.0.0/8
+		add $ipset_name 10.0.0.0/8
+		add $ipset_name 100.64.0.0/10
+		add $ipset_name 127.0.0.0/8
+		add $ipset_name 169.254.0.0/16
+		add $ipset_name 172.16.0.0/12
+		add $ipset_name 192.0.0.0/24
+		add $ipset_name 192.0.2.0/24
+		add $ipset_name 192.31.196.0/24
+		add $ipset_name 192.52.193.0/24
+		add $ipset_name 192.88.99.0/24
+		add $ipset_name 192.168.0.0/16
+		add $ipset_name 192.175.48.0/24
+		add $ipset_name 198.18.0.0/15
+		add $ipset_name 198.51.100.0/24
+		add $ipset_name 203.0.113.0/24
+		add $ipset_name 224.0.0.0/3
+
+		# add chnroute
+		$(cat /etc/chinadns-ng/chnroute.txt | sed "s/^/add $ipset_name /")
+	EOF
 }
 
 create_ipv6_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_6" "chnroute6"
 
-	# create ipset
 	if ipset list -n $ipset_name > /dev/null 2>&1; then
 		ipset destroy $ipset_name 2>/dev/null
 	fi
-	ipset create $ipset_name hash:net hashsize 64 family inet6
 
-	# add lan
-	ipset add $ipset_name "::/128"
-	ipset add $ipset_name "::1/128"
-	ipset add $ipset_name "::ffff:0:0/96"
-	ipset add $ipset_name "::ffff:0:0:0/96"
-	ipset add $ipset_name "64:ff9b::/96"
-	ipset add $ipset_name "100::/64"
-	ipset add $ipset_name "2001::/32"
-	ipset add $ipset_name "2001:20::/28"
-	ipset add $ipset_name "2001:db8::/32"
-	ipset add $ipset_name "2002::/16"
-	ipset add $ipset_name "fc00::/7"
-	ipset add $ipset_name "fe80::/10"
-	ipset add $ipset_name "ff00::/8"
+	ipset restore <<- EOF
+		# create ipset
+		create $ipset_name hash:net hashsize 64 family inet6
 
-	# add chnroute6
-	for ip in $(cat /etc/chinadns-ng/chnroute6.txt); do
-		ipset add $ipset_name $ip
-	done
+		# add lan
+		add $ipset_name ::/128
+		add $ipset_name ::1/128
+		add $ipset_name ::ffff:0:0/96
+		add $ipset_name ::ffff:0:0:0/96
+		add $ipset_name 64:ff9b::/96
+		add $ipset_name 100::/64
+		add $ipset_name 2001::/32
+		add $ipset_name 2001:20::/28
+		add $ipset_name 2001:db8::/32
+		add $ipset_name 2002::/16
+		add $ipset_name fc00::/7
+		add $ipset_name fe80::/10
+		add $ipset_name ff00::/8
+
+		# add chnroute6
+		$(cat /etc/chinadns-ng/chnroute6.txt | sed "s/^/add $ipset_name /")
+	EOF
 }
 
 destroy_chnroute_ipset() {
