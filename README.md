@@ -2,7 +2,7 @@
 
 ## 简介
 
-本项目是 [ChinaDNS-NG][UPSTREAM_PROJECT] 在 OpenWrt 上的移植。
+本项目是 [chinadns-ng][UPSTREAM_PROJECT] 在 OpenWrt 上的移植。
 
 ## 编译
 
@@ -10,10 +10,10 @@
 
     ```bash
     # 以 ar71xx 平台为例
-    tar xfJ openwrt-sdk-18.06.4-ar71xx-generic_gcc-7.3.0_musl.Linux-x86_64.tar.xz
+    tar xf openwrt-sdk-18.06.4-ar71xx-generic_gcc-7.3.0_musl.Linux-x86_64.tar.xz
     cd openwrt-sdk-*
     
-    # 获取 Makefile
+    # 获取源码
     git clone https://github.com/pexcn/openwrt-chinadns-ng.git package/chinadns-ng
     
     # 选中要编译的包 Network -> chinadns-ng
@@ -22,6 +22,18 @@
     # 开始编译
     make package/chinadns-ng/{clean,compile} V=s
     ```
+
+## 更新路由表
+
+```bash
+# IPv4 路由表
+wget https://pexcn.me/daily/chnroute/chnroute.txt -O /etc/chinadns-ng/chnroute.txt
+# IPv6 路由表
+wget https://pexcn.me/daily/chnroute/chnroute-v6.txt -O /etc/chinadns-ng/chnroute6.txt
+
+# 重启程序以触发更新 ipset
+/etc/init.d/chinadns-ng restart
+```
 
 ## Credits
 
