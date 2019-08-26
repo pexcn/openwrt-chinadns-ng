@@ -121,12 +121,14 @@ destroy_chnroute_ipset() {
 destroy_ipv4_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_4" "chnroute"
+	ipset flush $ipset_name 2>/dev/null
 	ipset destroy $ipset_name 2>/dev/null
 }
 
 destroy_ipv6_ipset() {
 	local ipset_name
 	config_get ipset_name "$1" "ipset_name_6" "chnroute6"
+	ipset flush $ipset_name 2>/dev/null
 	ipset destroy $ipset_name 2>/dev/null
 }
 
