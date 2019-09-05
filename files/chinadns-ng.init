@@ -150,8 +150,8 @@ start_chinadns_ng() {
 	append_param $1 ipset_name_6 "-6"
 	append_param $1 timeout_sec "-o"
 	append_param $1 repeat_times "-p"
-	append_bool $1 reuse_port "-r"
 	append_bool $1 fair_mode "-f"
+	append_bool $1 reuse_port "-r"
 	procd_close_instance
 }
 
