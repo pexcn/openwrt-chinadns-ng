@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=chinadns-ng
 PKG_VERSION:=1.0-beta.9
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 #PKG_USE_MIPS16:=0
 PKG_BUILD_PARALLEL:=1
 
