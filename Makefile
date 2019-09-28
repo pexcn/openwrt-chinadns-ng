@@ -51,7 +51,7 @@ endef
 
 define Package/chinadns-ng/postrm
 #!/bin/sh
-rm -r /etc/chinadns-ng
+rmdir --ignore-fail-on-non-empty /etc/chinadns-ng
 exit 0
 endef
 
