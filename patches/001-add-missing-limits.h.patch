@@ -1,0 +1,25 @@
+From 0c8dac9cf3b2d8cec4be5a7f18ca8fd4ae7b4e2a Mon Sep 17 00:00:00 2001
+From: pexcn <i@pexcn.me>
+Date: Fri, 4 Oct 2019 23:07:09 +0800
+Subject: [PATCH] add missing limits.h
+
+for openwrt build only
+---
+ chinadns.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/chinadns.h b/chinadns.h
+index 16642bc..a8b3eb9 100644
+--- a/chinadns.h
++++ b/chinadns.h
+@@ -2,6 +2,7 @@
+ #define CHINADNS_NG_CHINADNS_H
+ 
+ #define _GNU_SOURCE
++#include <limits.h>
+ #include <stdbool.h>
+ #include "netutils.h"
+ #undef _GNU_SOURCE
+-- 
+2.11.0
+
