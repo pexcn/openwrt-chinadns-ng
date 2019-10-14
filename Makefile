@@ -44,7 +44,7 @@ define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) files/chinadns-ng.init $(1)/etc/init.d/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DATA) files/chinadns-ng.config $(1)/etc/config/chinadns-ng
+	$(INSTALL_CONF) files/chinadns-ng.config $(1)/etc/config/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/chnroute.txt $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/chnroute6.txt $(1)/etc/chinadns-ng
