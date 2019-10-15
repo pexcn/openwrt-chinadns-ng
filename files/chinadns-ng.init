@@ -33,6 +33,28 @@ append_bool() {
 	procd_append_param command "$value"
 }
 
+append_param_if_not_eq() {
+	local section="$1"
+	local option="$2"
+	local switch="$3"
+	local default="$4"
+	local _loctmp
+	config_get _loctmp "$section" "$option"
+	[ -n "$_loctmp" -o -n "$default" ] || return 0
+	[ "$_loctmp" != "$default" ] && {
+		procd_append_param command "$switch" "$_loctmp"
+	}
+}
+
+is_exist_ipset_by_name() {
+	ipset list -n $1 &>/dev/null
+}
+
+destroy_ipset_by_name() {
+	ipset flush $1 2>/dev/null
+	ipset destroy $1 2>/dev/null
+}
+
 create_chnroute_ipset() {
 	local enable
 	config_get_bool enable $1 enable
@@ -52,7 +74,7 @@ create_ipv4_ipset() {
 		ipset create $ipset_name hash:net hashsize 64 family inet
 	fi
 
-	# add chnroute
+	# import chnroute
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute.txt | sed "s/^/add $ipset_name /")
 	EOF
@@ -68,7 +90,7 @@ create_ipv6_ipset() {
 		ipset create $ipset_name hash:net hashsize 64 family inet6
 	fi
 
-	# add chnroute6
+	# import chnroute6
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute6.txt | sed "s/^/add $ipset_name /")
 	EOF
@@ -92,15 +114,6 @@ destroy_ipv6_ipset() {
 	destroy_ipset_by_name $ipset_name
 }
 
-is_exist_ipset_by_name() {
-	ipset list -n $1 &>/dev/null
-}
-
-destroy_ipset_by_name() {
-	ipset flush $1 2>/dev/null
-	ipset destroy $1 2>/dev/null
-}
-
 start_chinadns_ng() {
 	local enable
 	config_get_bool enable $1 enable
@@ -119,16 +132,8 @@ start_chinadns_ng() {
 	append_param $1 ipset_name_4 "-4"
 	append_param $1 ipset_name_6 "-6"
 	append_param $1 gfwlist_file "-g"
-	local timeout_sec_tmp
-	config_get timeout_sec_tmp "$1" "timeout_sec" "3"
-	[ $timeout_sec_tmp -ne "3" ] && {
-		append_param $1 timeout_sec "-o"
-	}
-	local repeat_times_tmp
-	config_get repeat_times_tmp "$1" "repeat_times" "1"
-	[ $repeat_times_tmp -gt "1" ] && {
-		append_param $1 repeat_times "-p"
-	}
+	append_param_if_not_eq $1 timeout_sec "-o" "3"
+	append_param_if_not_eq $1 repeat_times "-p" "1"
 	append_bool $1 fair_mode "-f"
 	append_bool $1 reuse_port "-r"
 	append_bool $1 noip_as_chnip "-n"
