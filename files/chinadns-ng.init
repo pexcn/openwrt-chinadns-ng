@@ -46,6 +46,10 @@ append_param_if_not_eq() {
 	}
 }
 
+get_cpu_cores() {
+	grep -c ^processor /proc/cpuinfo
+}
+
 is_exist_ipset_by_name() {
 	ipset list -n $1 &>/dev/null
 }
@@ -119,25 +123,33 @@ start_chinadns_ng() {
 	config_get_bool enable $1 enable
 	[ "$enable" = 1 ] || return 0
 
-	procd_open_instance
-	procd_set_param respawn
-	procd_set_param stderr 1
-	procd_set_param nice -5
-	procd_set_param limits nofile="65535 65535"
-	procd_set_param command /usr/bin/chinadns-ng
-	append_param $1 bind_addr "-b"
-	append_param $1 bind_port "-l"
-	append_param $1 china_dns "-c"
-	append_param $1 trust_dns "-t"
-	append_param $1 ipset_name_4 "-4"
-	append_param $1 ipset_name_6 "-6"
-	append_param $1 gfwlist_file "-g"
-	append_param_if_not_eq $1 timeout_sec "-o" "3"
-	append_param_if_not_eq $1 repeat_times "-p" "1"
-	append_bool $1 fair_mode "-f"
-	append_bool $1 reuse_port "-r"
-	append_bool $1 noip_as_chnip "-n"
-	procd_close_instance
+	local reuse_port
+	config_get_bool reuse_port $1 reuse_port
+	local instances=$get_cpu_cores
+	[ "reuse_port" = 1 ] || instances=1
+
+	for i in {1..$instances}
+	do
+		procd_open_instance
+		procd_set_param respawn
+		procd_set_param stderr 1
+		procd_set_param nice -5
+		procd_set_param limits nofile="65535 65535"
+		procd_set_param command /usr/bin/chinadns-ng
+		append_param $1 bind_addr "-b"
+		append_param $1 bind_port "-l"
+		append_param $1 china_dns "-c"
+		append_param $1 trust_dns "-t"
+		append_param $1 ipset_name_4 "-4"
+		append_param $1 ipset_name_6 "-6"
+		append_param $1 gfwlist_file "-g"
+		append_param_if_not_eq $1 timeout_sec "-o" "3"
+		append_param_if_not_eq $1 repeat_times "-p" "1"
+		append_bool $1 fair_mode "-f"
+		append_bool $1 reuse_port "-r"
+		append_bool $1 noip_as_chnip "-n"
+		procd_close_instance
+	done
 }
 
 start_service() {
