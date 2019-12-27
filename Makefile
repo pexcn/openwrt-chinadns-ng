@@ -37,6 +37,7 @@ define Package/chinadns-ng/conffiles
 /etc/chinadns-ng/chnroute.txt
 /etc/chinadns-ng/chnroute6.txt
 /etc/chinadns-ng/gfwlist.txt
+/etc/chinadns-ng/chinalist.txt
 endef
 
 define Package/chinadns-ng/install
@@ -50,6 +51,7 @@ define Package/chinadns-ng/install
 	$(INSTALL_DATA) files/chnroute.txt $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/chnroute6.txt $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/gfwlist.txt $(1)/etc/chinadns-ng
+	$(INSTALL_DATA) files/chinalist.txt $(1)/etc/chinadns-ng
 endef
 
 define Package/chinadns-ng/postrm
