@@ -23,7 +23,7 @@
     make package/chinadns-ng/{clean,compile} V=s
     ```
 
-## 更新路由表
+## 更新数据列表
 
 ```bash
 # IPv4 路由表
@@ -33,7 +33,7 @@ wget https://pexcn.me/daily/chnroute/chnroute-v6.txt -O /etc/chinadns-ng/chnrout
 # 域名黑名单
 wget https://pexcn.me/daily/gfwlist/gfwlist.txt -O /etc/chinadns-ng/gfwlist.txt
 # 域名白名单
-wget https://pexcn.me/daily/chinalist/chinalist.txt -O /etc/chinadns-ng/chinalist.txt
+wget https://pexcn.me/daily/chinalist/chinalist-lite.txt -O /etc/chinadns-ng/chinalist.txt
 
 # 重启程序以触发更新 ipset
 /etc/init.d/chinadns-ng restart
