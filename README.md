@@ -1,5 +1,7 @@
 # chinadns-ng for OpenWrt
 
+> Telegram Group: https://t.me/daily_scripts
+
 ## 简介
 
 本项目是 [chinadns-ng](https://github.com/zfl9/chinadns-ng) 在 OpenWrt 上的移植。
@@ -44,7 +46,7 @@ wget https://pexcn.me/daily/chinalist/chinalist.txt -O /etc/chinadns-ng/chinalis
 ## 许可证
 
 ```
-Copyright (C) 2019-2020, pexcn <i@pexcn.me>
+Copyright (C) 2019 - 2020, pexcn <i@pexcn.me>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
