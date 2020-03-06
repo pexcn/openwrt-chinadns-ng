@@ -1,4 +1,4 @@
-# chinadns-ng for OpenWrt
+# ChinaDNS Next Generation for OpenWrt
 
 > Telegram Group: https://t.me/daily_scripts
 
@@ -38,7 +38,7 @@ wget https://pexcn.me/daily/chinalist/chinalist.txt -O /etc/chinadns-ng/chinalis
 /etc/init.d/chinadns-ng restart
 ```
 
-## 归功于
+## 鸣谢
 
 - [@zfl9/chinadns-ng](https://github.com/zfl9/chinadns-ng)
 - [@aa65535/openwrt-chinadns](https://github.com/aa65535/openwrt-chinadns)
