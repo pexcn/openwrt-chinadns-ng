@@ -1,0 +1,23 @@
+From 2888088165006d188fffc6fd54d5c9aa603cda30 Mon Sep 17 00:00:00 2001
+From: pexcn <i@pexcn.me>
+Date: Sun, 5 Apr 2020 22:35:08 +0800
+Subject: [PATCH] build with gcc O3 optimizations
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index d3152a7..e03ac17 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,5 +1,5 @@
+ CC = gcc
+-CFLAGS = -std=c99 -Wall -Wextra -O2
++CFLAGS = -std=c99 -Wall -Wextra -O3
+ SRCS = chinadns.c dnsutils.c dnlutils.c netutils.c
+ OBJS = $(SRCS:.c=.o)
+ MAIN = chinadns-ng
+-- 
+2.25.1
+
