@@ -144,7 +144,7 @@ start_chinadns_ng() {
 		append_param_if_not_eq $1 ipset_name_6 "-6" "chnroute6"
 		append_param $1 gfwlist_file "-g"
 		append_param $1 chnlist_file "-m"
-		append_param_if_not_eq $1 timeout_sec "-o" "3"
+		append_param_if_not_eq $1 timeout_sec "-o" "5"
 		append_param_if_not_eq $1 repeat_times "-p" "1"
 		append_bool $1 chnlist_first "-M"
 		append_bool $1 fair_mode "-f"
