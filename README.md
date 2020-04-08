@@ -1,7 +1,5 @@
 # ChinaDNS Next Generation for OpenWrt
 
-> Telegram Group: https://t.me/daily_scripts
-
 ## 简介
 
 本项目是 [chinadns-ng](https://github.com/zfl9/chinadns-ng) 在 OpenWrt 上的移植。
@@ -20,22 +18,6 @@ make menuconfig
 
 # 编译 chinadns-ng
 make package/chinadns-ng/{clean,compile} V=s
-```
-
-## 更新数据列表
-
-```bash
-# IPv4 路由表
-wget https://pexcn.me/daily/chnroute/chnroute.txt -O /etc/chinadns-ng/chnroute.txt
-# IPv6 路由表
-wget https://pexcn.me/daily/chnroute/chnroute-v6.txt -O /etc/chinadns-ng/chnroute6.txt
-# 域名黑名单
-wget https://pexcn.me/daily/gfwlist/gfwlist.txt -O /etc/chinadns-ng/gfwlist.txt
-# 域名白名单
-wget https://pexcn.me/daily/chinalist/chinalist.txt -O /etc/chinadns-ng/chinalist.txt
-
-# 重启程序以触发更新 ipset
-/etc/init.d/chinadns-ng restart
 ```
 
 ## 鸣谢
