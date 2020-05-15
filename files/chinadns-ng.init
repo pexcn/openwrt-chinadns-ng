@@ -162,8 +162,3 @@ stop_service() {
 	config_load chinadns-ng
 	config_foreach destroy_chnroute_ipset chinadns-ng
 }
-
-reload_service() {
-	# https://github.com/pexcn/openwrt-chinadns-ng/issues/13
-	echo "Unimplemented, use \"restart\" instead."
-}
