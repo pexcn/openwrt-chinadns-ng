@@ -2,7 +2,7 @@
 
 ## 简介
 
-本项目为 [chinadns-ng](https://github.com/zfl9/chinadns-ng) 提供 LuCI 接口。
+本项目为 [openwrt-chinadns-ng](https://github.com/pexcn/openwrt-chinadns-ng) 提供 LuCI 接口。
 
 ## 编译
 
