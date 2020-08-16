@@ -9,6 +9,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
 	SECTION:=luci
 	CATEGORY:=LuCI
+	SUBMENU:=3. Applications
 	TITLE:=LuCI support for chinadns-ng
 	LUCI_DEPENDS:=+chinadns-ng
 endef
