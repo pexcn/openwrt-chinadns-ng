@@ -32,32 +32,10 @@ define Package/chinadns-ng/description
 ChinaDNS Next Generation, refactoring with epoll and ipset.
 endef
 
-define Package/chinadns-ng/conffiles
-/etc/config/chinadns-ng
-/etc/chinadns-ng/chnroute.txt
-/etc/chinadns-ng/chnroute6.txt
-/etc/chinadns-ng/gfwlist.txt
-/etc/chinadns-ng/chinalist.txt
-endef
-
 define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chinadns-ng $(1)/usr/bin
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) files/chinadns-ng.init $(1)/etc/init.d/chinadns-ng
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) files/chinadns-ng.config $(1)/etc/config/chinadns-ng
-	$(INSTALL_DIR) $(1)/etc/chinadns-ng
-	$(INSTALL_DATA) files/chnroute.txt $(1)/etc/chinadns-ng
-	$(INSTALL_DATA) files/chnroute6.txt $(1)/etc/chinadns-ng
-	$(INSTALL_DATA) files/gfwlist.txt $(1)/etc/chinadns-ng
-	$(INSTALL_DATA) files/chinalist.txt $(1)/etc/chinadns-ng
 endef
 
-define Package/chinadns-ng/postrm
-#!/bin/sh
-rmdir --ignore-fail-on-non-empty /etc/chinadns-ng
-exit 0
-endef
 
 $(eval $(call BuildPackage,chinadns-ng))
