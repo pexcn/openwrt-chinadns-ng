@@ -145,6 +145,7 @@ start_chinadns_ng() {
 		append_param_if_neq $1 timeout_sec "-o" "5"
 		append_param_if_neq $1 repeat_times "-p" "1"
 		append_bool $1 chnlist_first "-M"
+		append_bool $1 no_ipv6 "-N"
 		append_bool $1 fair_mode "-f"
 		append_bool $1 reuse_port "-r"
 		append_bool $1 noip_as_chnip "-n"
