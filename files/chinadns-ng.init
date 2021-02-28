@@ -80,6 +80,7 @@ create_ipv4_ipset() {
 	# import ipv4 chnroute
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute.txt | sed "s/^/add $ipset_name /")
+		$(cat /etc/chinadns-ng/chnroute.extra | sed "s/^/add $ipset_name /")
 	EOF
 }
 
@@ -96,6 +97,7 @@ create_ipv6_ipset() {
 	# import ipv6 chnroute
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute6.txt | sed "s/^/add $ipset_name /")
+		$(cat /etc/chinadns-ng/chnroute6.extra | sed "s/^/add $ipset_name /")
 	EOF
 }
 
