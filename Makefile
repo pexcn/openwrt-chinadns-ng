@@ -45,7 +45,7 @@ endef
 define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chinadns-ng $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chinadns-ng-update-list.sh $(1)/usr/bin
+	$(INSTALL_BIN) files/chinadns-ng-update-list.sh $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) files/chinadns-ng.init $(1)/etc/init.d/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/config
