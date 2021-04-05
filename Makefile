@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=chinadns-ng
 PKG_VERSION:=1.0-beta.24
-PKG_RELEASE:=2
+PKG_RELEASE:=4
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/zfl9/chinadns-ng.git
@@ -43,7 +43,6 @@ endef
 define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chinadns-ng $(1)/usr/bin
-	$(INSTALL_BIN) files/chinadns-ng-update-list.sh $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) files/chinadns-ng.init $(1)/etc/init.d/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/config

@@ -14,7 +14,7 @@ index d3152a7..e03ac17 100644
 @@ -1,5 +1,5 @@
  CC = gcc
 -CFLAGS = -std=c99 -Wall -Wextra -O2
-+CFLAGS = -std=c99 -Wall -Wextra -O3
++CFLAGS = -std=c99 -Wall -Wextra -O3 -pipe
  SRCS = chinadns.c dnsutils.c dnlutils.c netutils.c
  OBJS = $(SRCS:.c=.o)
  MAIN = chinadns-ng
