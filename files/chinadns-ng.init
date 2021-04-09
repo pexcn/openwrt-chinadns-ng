@@ -132,7 +132,7 @@ start_chinadns_ng() {
 		procd_set_param respawn
 		procd_set_param stderr 1
 		procd_set_param nice -5
-		procd_set_param limits nofile="65535 65535"
+		procd_set_param limits nofile="1048576 1048576"
 		procd_set_param command /usr/bin/chinadns-ng
 		append_param $1 bind_addr "-b"
 		append_param $1 bind_port "-l"
