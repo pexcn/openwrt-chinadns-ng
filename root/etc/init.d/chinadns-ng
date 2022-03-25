@@ -82,6 +82,12 @@ create_chnroute_ipset() {
 	[ "$enable" = 1 ] || return 0
 
 	config_foreach create_ipv4_ipset chinadns-ng
+
+                            
+        config_get_bool no_ipv6 $2 no_ipv6
+        [ "$no_ipv6" = 1 ] || return 0
+                          
+
 	config_foreach create_ipv6_ipset chinadns-ng
 }
 
@@ -166,6 +172,7 @@ start_chinadns_ng() {
 		append_bool $1 fair_mode "-f"
 		append_bool $1 reuse_port "-r"
 		append_bool $1 noip_as_chnip "-n"
+                append_bool $1 no_ipv6 "-N"
 		procd_close_instance
 	done
 }

@@ -106,6 +106,12 @@ msgstr "接受无ip地址的应答"
 msgid "accept reply without ipaddr (A/AAAA query)"
 msgstr "接受 qtype 为 A/AAAA 但却没有 IP 的 reply"
 
+msgid "Disable the IP V6"
+msgstr "禁用 IP V6"
+
+msgid "Disable the IP V6 for Ipset"
+msgstr "禁用 IP V6 Ipset 规则"
+
 msgid "timeout_sec"
 msgstr "查询超时时间 秒"
 
