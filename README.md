@@ -51,7 +51,7 @@ make package/chinadns-ng/{clean,compile} V=s
 ## 许可证
 
 ```
-Copyright (C) 2019-2021, pexcn <i@pexcn.me>
+Copyright (C) 2019-2022, pexcn <i@pexcn.me>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

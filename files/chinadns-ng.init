@@ -1,12 +1,12 @@
 #!/bin/sh /etc/rc.common
 #
-# Copyright (C) 2019-2021 pexcn <i@pexcn.me>
+# Copyright (C) 2019-2022 pexcn <i@pexcn.me>
 #
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
 #
 
-START=90
+START=99
 
 USE_PROCD=1
 #PROCD_DEBUG=1
