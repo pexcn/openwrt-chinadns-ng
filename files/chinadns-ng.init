@@ -150,6 +150,7 @@ start_chinadns_ng() {
 		append_bool $1 fair_mode "-f"
 		append_bool $1 reuse_port "-r"
 		append_bool $1 noip_as_chnip "-n"
+		append_bool $1 verbose "-v"
 		procd_close_instance
 	done
 }
