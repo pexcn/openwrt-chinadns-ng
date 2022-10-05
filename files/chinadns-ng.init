@@ -46,7 +46,7 @@ append_param_if_neq() {
 }
 
 get_cpu_cores() {
-	grep -c ^processor /proc/cpuinfo
+	grep -c "^processor" /proc/cpuinfo
 }
 
 is_exist_ipset() {
@@ -126,12 +126,13 @@ start_chinadns_ng() {
 	config_get_bool reuse_port $1 reuse_port
 	[ "$reuse_port" = 1 ] || instances=1
 
-	for i in $(seq 1 $instances)
-	do
+	for i in $(seq 1 $instances); do
 		procd_open_instance
 		procd_set_param respawn
+		procd_set_param stdout 1
 		procd_set_param stderr 1
 		procd_set_param nice -5
+		procd_set_param file /etc/config/chinadns-ng
 		procd_set_param limits nofile="1048576 1048576"
 		procd_set_param command /usr/bin/chinadns-ng
 		append_param $1 bind_addr "-b"
