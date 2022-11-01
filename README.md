@@ -42,6 +42,7 @@ make package/chinadns-ng/{clean,compile} V=s
 `fair_mode`      | 布尔值   | 启用 "公平模式" 代替 "抢答模式"
 `reuse_port`     | 布尔值   | 启用多进程负载均衡
 `noip_as_chnip`  | 布尔值   | 接受 QTYPE 为 A/AAAA 但没有 IP 的 reply
+`verbose`        | 布尔值   | 详细日志输出
 
 ## 鸣谢
 
