@@ -44,6 +44,10 @@ make package/chinadns-ng/{clean,compile} V=s
 `noip_as_chnip`  | 布尔值   | 接受 QTYPE 为 A/AAAA 但没有 IP 的 reply
 `verbose`        | 布尔值   | 详细日志输出
 
+## 发布
+
+https://github.com/openwrt-dev/feeds
+
 ## 鸣谢
 
 - [@zfl9/chinadns-ng](https://github.com/zfl9/chinadns-ng)
