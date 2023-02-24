@@ -16,7 +16,7 @@ PKG_USE_MIPS16:=0
 
 PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=LICENSE
-PKG_MAINTAINER:=pexcn <i@pexcn.me>
+PKG_MAINTAINER:=pexcn <pexcn97@gmail.com>
 
 include $(INCLUDE_DIR)/package.mk
 

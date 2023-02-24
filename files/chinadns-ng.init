@@ -79,7 +79,6 @@ create_ipv4_ipset() {
 		ipset create "$ipset_name" hash:net hashsize 64 family inet
 	fi
 
-	# import ipv4 chnroute
 	ipset restore <<-EOF
 		$(sed "s/^/add $ipset_name /" </etc/chinadns-ng/chnroute.txt)
 	EOF
@@ -95,7 +94,6 @@ create_ipv6_ipset() {
 		ipset create "$ipset_name" hash:net hashsize 64 family inet6
 	fi
 
-	# import ipv6 chnroute
 	ipset restore <<-EOF
 		$(sed "s/^/add $ipset_name /" </etc/chinadns-ng/chnroute6.txt)
 	EOF
@@ -134,7 +132,6 @@ start_chinadns_ng() {
 		procd_set_param stdout 1
 		procd_set_param stderr 1
 		procd_set_param nice -5
-		procd_set_param file /etc/config/chinadns-ng
 		procd_set_param limits nofile="1048576 1048576"
 		procd_set_param command /usr/bin/chinadns-ng
 		append_param "$1" bind_addr "-b"
