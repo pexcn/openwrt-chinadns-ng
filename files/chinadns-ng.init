@@ -47,6 +47,21 @@ append_param_if_neq() {
 	procd_append_param command "$switch" "$_loctmp"
 }
 
+append_param_with_val() {
+	local section="$1"
+	local option="$2"
+	local switch="$3"
+	local _loctmp
+	config_get _loctmp "$section" "$option"
+	[ -n "$_loctmp" ] || return 0
+	[ "$_loctmp" != 0 ] || return 0
+	if [ "$_loctmp" = 1 ]; then
+		procd_append_param command "$switch"
+	else
+		procd_append_param command "${switch}=${_loctmp}"
+	fi
+}
+
 get_cpu_cores() {
 	grep -c "^processor" /proc/cpuinfo
 }
@@ -145,7 +160,7 @@ start_chinadns_ng() {
 		append_param_if_neq "$1" timeout_sec "-o" "5"
 		append_param_if_neq "$1" repeat_times "-p" "1"
 		append_bool "$1" chnlist_first "-M"
-		append_bool "$1" no_ipv6 "-N"
+		append_param_with_val "$1" no_ipv6 "-N"
 		append_bool "$1" fair_mode "-f"
 		append_bool "$1" reuse_port "-r"
 		append_bool "$1" noip_as_chnip "-n"
