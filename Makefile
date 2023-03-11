@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=chinadns-ng
-PKG_VERSION:=2023.03.02
+PKG_VERSION:=2023.03.10
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/zfl9/chinadns-ng.git
-PKG_SOURCE_VERSION:=a2ceae6b3530217e3339fb502d30daac7315b83e
+PKG_SOURCE_VERSION:=6f08642ca369f16739adf8166e1a0ea3a037255b
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_SOURCE_SUBDIR)
@@ -39,6 +39,8 @@ define Package/chinadns-ng/conffiles
 /etc/chinadns-ng/gfwlist.txt
 /etc/chinadns-ng/chinalist.txt
 endef
+
+MAKE_FLAGS += STATIC=1
 
 define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/usr/bin
