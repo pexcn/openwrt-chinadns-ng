@@ -162,6 +162,7 @@ start_chinadns_ng() {
 		append_param_if_neq "$1" repeat_times "-p" "1"
 		append_param_with_val "$1" no_ipv6 "-N"
 		append_bool "$1" chnlist_first "-M"
+		append_bool "$1" add_tagchn_ip "-a"
 		append_bool "$1" reuse_port "-r"
 		append_bool "$1" noip_as_chnip "-n"
 		append_bool "$1" verbose "-v"
